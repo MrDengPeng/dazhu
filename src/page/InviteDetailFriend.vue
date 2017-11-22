@@ -1,0 +1,47 @@
+<template>
+	<div class="wrapper">
+		<head-top v-if="headTop" head-title="姓名"/>
+		<div class="wrapper" :class="{'head-padding': headTop}">
+			<income-head :show-avatar="true" :invite="true" @dtpicker="dtpickerone"/>
+			<div class="mui-scroll-wrapper" style="top: 6.1rem;">
+				<div class="mui-scroll">
+					<income-item :income="false"/>
+				</div>
+			</div>
+		</div>		
+	</div>
+</template>
+
+<script>
+	import HeadTop from '@/components/HeadTop'
+	import IncomeHead from '@/components/IncomeHead'
+	import IncomeItem from '@/components/IncomeItem'
+	export default {
+		data(){
+			return {
+				dtpicker: null,
+				date: ''
+			}
+		},
+		mounted(){
+			this.dtpicker = new this.$root.mui.DtPicker({"type":"date","beginYear":2014,"endYear":2020});
+		},
+		computed: {
+			headTop(){
+				return this.$store.state.headTop
+			}
+		},
+		methods: {
+			dtpickerone(){
+				this.dtpicker.show(rs => {
+					this.date = rs.text;
+				})
+			}
+		},
+		components: {
+			HeadTop,
+			IncomeHead,
+			IncomeItem
+		}
+	}
+</script>

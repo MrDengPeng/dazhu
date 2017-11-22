@@ -1,0 +1,49 @@
+@base:#ff7000;  
+@title:#505050;
+@font3:#333;
+@font6:#666;
+
+.font(@size){
+	font-size: @size/75rem
+}
+.size(@w,@h){
+	width: @w;
+	height: @h;
+}
+
+.clearfix(){
+  &::after{
+  clear:both;
+  content:' ';
+  display:table;
+  width: 0;
+  height: 0;
+  visibility:hidden;
+}}
+
+.icon(@width,@height,@left,@top){
+	width: @width;
+	height: @height;
+	background-position: @left @top;
+}
+
+.flex(@j:flex-start,@a:stretch){
+	display: flex;
+	display: -webkit-flex;
+	justify-content: @j;
+	align-items: @a;
+}
+
+.bg-linear(@deg,@startColor,@endColor){
+	background-image:linear-gradient(@deg,@startColor,@endColor);
+	background-image:-webkit-linear-gradient(@deg,@startColor,@endColor); 
+	background-image:-moz-linear-gradient(@deg,@startColor,@endColor);
+}
+.linear-btn(@w,@h){
+	.size(@w,@h);
+	line-height: @h;
+	text-align: center;
+	color: #fff;
+	.bg-linear(90deg,#ff9b4c,#ff7000);
+}
+

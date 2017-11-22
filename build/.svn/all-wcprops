@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/build
+END
+vue-loader.conf.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/project/!svn/ver/17698/weizhu_new/h5/trunk/build/vue-loader.conf.js
+END
+webpack.base.conf.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/build/webpack.base.conf.js
+END
+dev-client.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/project/!svn/ver/17698/weizhu_new/h5/trunk/build/dev-client.js
+END
+webpack.dev.conf.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/project/!svn/ver/17698/weizhu_new/h5/trunk/build/webpack.dev.conf.js
+END
+build.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/project/!svn/ver/17698/weizhu_new/h5/trunk/build/build.js
+END
+utils.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/project/!svn/ver/17904/weizhu_new/h5/trunk/build/utils.js
+END
+dev-server.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/project/!svn/ver/17698/weizhu_new/h5/trunk/build/dev-server.js
+END
+check-versions.js
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/project/!svn/ver/17698/weizhu_new/h5/trunk/build/check-versions.js
+END
+webpack.prod.conf.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/project/!svn/ver/17698/weizhu_new/h5/trunk/build/webpack.prod.conf.js
+END

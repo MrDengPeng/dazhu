@@ -1,0 +1,57 @@
+<template>
+	<div class="wrapper">
+		<head-top v-if="headTop" head-title="收益明细"/>
+		<div class="wrapper" :class="{'head-padding': headTop}">
+			<income-head :show-avatar="false" @dtpicker="dtpickerone"/>
+			<mui-slider-tap @jump="detailFriendTap" top="2.4rem" :showArrow="true"/>
+		</div>		
+	</div>
+</template>
+
+<script>
+	import HeadTop from '@/components/HeadTop'
+	import IncomeHead from '@/components/IncomeHead'
+	import MuiSliderTap from '@/components/MuiSliderTap'
+//	import {pull} from '@/assets/js/mui.pullToRefresh'
+//	import {pullSub} from '@/assets/js/mui.pullToRefresh.material'
+	export default {
+		name: 'IncomeDetail',
+		data(){
+			return {
+				dtpicker: null,
+				date: ''
+			}
+		},
+		mounted(){
+			
+			this.mui.muiSlider(this.mui, window);
+			this.dtpicker = new this.mui.DtPicker({"type":"date","beginYear":2014,"endYear":2020});
+		},
+		destroyed(){
+			
+		},
+		computed: {
+			headTop(){
+				return this.$store.state.headTop
+			}
+		},
+		methods: {
+			dtpickerone(){
+				this.dtpicker.show(rs => {
+					console.log(rs);
+					this.date = rs.text;
+				})
+			},
+			detailFriendTap(e){
+				this.$router.push({name: 'IncomeDetailFriend'})
+			}
+			
+		},
+		components: {
+			HeadTop,
+			IncomeHead,
+			MuiSliderTap
+		}
+	}
+</script>
+

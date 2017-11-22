@@ -1,0 +1,206 @@
+<template>
+	<div class="wrapper">
+		<head-top v-if="headTop" head-title="邀请有奖"/>
+		<div id="pullrefresh" class="mui-scroll-wrapper" :style="{top: topDistance}">
+			<div class="mui-scroll">
+				<div class="wrap-sub">
+					<div class="content-box">
+						<img class="head-img" src="static/images/yq_bg.png"/>
+						<div class="info">
+							<router-link to="/income" class="item">累计收益<br /><span><em>{{data.money}}</em>元</span></router-link>
+							<router-link to="/invite" class="item">成功邀请<br /><span><em>{{data.num}}</em>人</span></router-link>
+						</div>
+						<div class="code-box">
+							<div class="erwema" id="qrcode">
+								<!--<img src="static/images/okdel/share_new.png"/>-->
+							</div>
+							<p><span>{{data.code}}</span><br />我的邀请码</p>
+						</div>
+						<div class="box">
+							<span class="btn-big" @click="headTap">邀请好友</span>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+</template>
+
+<script>
+	import { mapState } from 'vuex'
+	import HeadTop from '@/components/HeadTop'
+	
+	export default {
+		name: 'InvitePrize',
+		data(){
+			return {
+				data:{
+					code: '000000',
+					money: 0,
+					num: 0
+				}
+			}
+		},
+		components: {
+			HeadTop
+		},
+		computed: {
+			...mapState(['headTop']),
+			topDistance(){
+				return this.$store.state.headTop?'1.173rem':''
+			}
+		},
+		methods: {
+			headTap(){
+				this.$store.dispatch('headTop');
+			},
+			initData(refresh){
+				var self = this;
+				var params = new URLSearchParams();
+				params.append('token', 'NjczNjF8ZGh1cDhmcXoyOXwxODkzODg4NjA1Mw==');
+				this.$axios.post('user/listInvitationCode', params).then(function(res){
+					console.log(res.data);
+					refresh && self.mui('#pullrefresh').pullRefresh().endPulldownToRefresh();					
+					if(res.data.status == 200){
+						let el = document.getElementById('qrcode');						
+						el.innerHTML = '';
+						self.$data.data = Object.assign({}, self.$data.data, res.data.response);
+						import('@/assets/js/erweima').then(function(obj){
+							new obj.QRCode(el, {
+					            text: res.data.response.url,
+					            width: window.innerWidth/375*110,
+					            height: window.innerWidth/375*110
+					        });
+						})
+					}else{
+						self.mui.toast(res.data.message);
+					}
+				}).catch(function(err){
+					console.log(err);
+				})
+			}
+		},
+		mounted(){
+			
+			var self = this;
+			this.initData();
+			this.mui.init({
+			  pullRefresh : {
+			    container:"#pullrefresh",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+			    down : {
+			      height:50,//可选,默认50.触发下拉刷新拖动距离,
+			      auto: false,//可选,默认false.首次加载自动下拉刷新一次
+			      contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+			      contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+			      contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+			      callback : function(){
+			      	self.initData(true);
+			      } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+			    }
+			  }
+			});
+			this.mui('.mui-scroll-wrapper').scroll({
+				indicators: false
+			})
+		}
+	}
+</script>
+<style>
+	@import '~assets/style/mui.picker.min';
+	
+	
+	.mui-scrollbar.mui-scrollbar-vertical{
+		display: none;
+	}
+</style>
+<style scoped>
+	
+	.mui-scroll{
+		width: 100%;
+		height: 100%;
+	}
+	.head-padding{
+		width: 100%;
+		height: 100%;
+	}
+	.wrap-sub{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to bottom, #ffb336, #ff3f30);
+	}
+	.head-img{
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.content-box{
+		position: absolute;
+		top: 50px;
+		right: 30px;
+		bottom: 50px;
+		left: 30px;
+		background-color: #fff;
+		border-radius: 10px;
+		overflow: hidden;
+		box-shadow: 0 0 13px rgba(255,112,0,.8);/*no*/
+		font-size: 28px;
+	}
+	.info{
+		display: flex;
+		margin-top: -5px;
+	}
+	.info .item{
+		flex: 1;
+		text-align: center;
+		color: #333;
+		font-size: 28px;
+		line-height: 1.2;
+	}
+	.info .item:nth-child(2){
+		border-left: 1px solid #FF7000;/*no*/
+	}
+	.info .item span{
+		color: #ff7000;
+	}
+	.info .item em{
+		font-size: 60px;
+	}
+	.code-box{
+		margin: 40px 0;
+		text-align: center;
+	}
+	.code-box .erwema{
+		display: inline-block;
+		/*width: 130px;
+		height: 130px;
+		padding: 10px;*/
+		width: 260px;
+		height: 260px;
+		padding: 20px;
+		background:linear-gradient(to bottom, #fff8eb, #ffebea);
+	}
+	#qrcode img{
+		
+		width: 100% !important;
+	}
+	.code-box p{
+		margin-top: 10px;
+		font-size: 28px;
+	}
+	.code-box span{
+		color: #FF7000;
+		font-size: 36px;
+	}
+	.box{
+		position: absolute;
+		left: 0;
+		bottom: 40px;
+		width: 100%;
+		padding: 0 46px;
+	}
+	.box .btn-big{
+		line-height: 80px;
+		font-size: 34px;
+	}
+</style>
