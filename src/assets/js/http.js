@@ -5,8 +5,8 @@ import axios from 'axios';
 import Qs from 'qs';
 
 var instance = axios.create({
-    baseURL: '',
-    headers: { 'Content-Type': 'application/json' }
+    baseURL: 'http://192.168.0.110:8088/weizhu.api/api/',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 });
 const API_CODE = {
     SUCCESS: 200
@@ -17,19 +17,18 @@ const POST = 2;
 var errorReject = {
     message: '服务器出小差了，请稍后再试'
 }
-class Http { }
-Http.install = function (Vue, options) {
+export function http (Vue, options) {
     function generateResultObj(msg) {
         return {
             message: msg
         }
     }
     function handlerError(error, reject) {
-        if (error.message.indexOf("timeout")) {
+        if (error.message.match("timeout")) {
             reject(generateResultObj('连接超时，请稍后再试'))
             return;
         }
-        if (error.message.indexOf("Network Error")) {
+        if (error.message.match("Network Error")) {
             reject(generateResultObj('服务器出小差了，请稍后再试'))
             return;
         }
@@ -41,7 +40,10 @@ Http.install = function (Vue, options) {
         }
         // 请求成功
         if (result.status === API_CODE.SUCCESS) {
-            resolve(result.status);
+        	if(result.data.status == 500){
+        		throw new Error('服务器出错');
+        	}
+            resolve(result);
             return;
         }
         reject(result);
@@ -101,16 +103,16 @@ Http.install = function (Vue, options) {
     }
     function post(url, params, options = {}) {
         /*options.loading && Vue.prototype.$loading("加载中...")*/
+       	params = Qs.stringify(params);
+       	console.log(params);
         return new Promise((resolve, reject) => {
             instance.post(
                 url,
                 params,
                 options.config).then((result) => {
-                    closeLoading();
                     handlerSuccess(result, resolve, reject);
                 }).catch((e) => {
                     console.log(e)
-                    closeLoading();
                     handlerError(e, reject);
                 });
         })
@@ -137,4 +139,3 @@ Http.install = function (Vue, options) {
         return upload(url, params, options)
     }
 }
-export default Http;

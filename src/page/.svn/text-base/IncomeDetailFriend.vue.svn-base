@@ -1,9 +1,9 @@
 <template>
 	<div class="wrapper">
 		<head-top v-if="headTop" head-title="收益明细"/>
-		<div class="wrapper" :class="{'head-padding': headTop}">
+		<div class="wrap-position" :class="{'head-top': headTop}">
 			<income-head :show-avatar="true" @dtpicker="dtpickerone"/>
-			<mui-slider-tap top="6.426rem"/>
+			<mui-slider-tap top="5.253rem"/>
 		</div>		
 	</div>
 </template>
@@ -20,8 +20,8 @@
 			}
 		},
 		mounted(){
-			this.mui.muiSlider(this.mui, window);
-			this.dtpicker = new this.mui.DtPicker({"type":"date","beginYear":2014,"endYear":2020});
+			this.$mui.muiSlider(this.$mui, window);
+			this.dtpicker = new this.$mui.DtPicker({"type":"date","beginYear":2014,"endYear":2020});
 		},
 		computed: {
 			headTop(){

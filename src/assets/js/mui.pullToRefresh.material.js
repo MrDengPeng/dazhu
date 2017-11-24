@@ -1,4 +1,4 @@
-function pullSub($) {
+export function pullSub($) {
 	var CLASS_PULL_TOP_TIPS = $.className('pull-top-tips');
 
 	$.PullToRefresh = $.PullToRefresh.extend({
@@ -349,7 +349,4 @@ function pullSub($) {
 			};
 		})()
 	});
-}
-export {
-	pullSub
 }

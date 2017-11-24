@@ -18,12 +18,14 @@ export default new Router({
 	{
 	  path: '/income',
 	  name: 'IncomeDetail',
-	  component: IncomeDetail
+	  component: IncomeDetail,
+	  props: (route) => ({moneyArr: route.query.moneyArr})
 	},
 	{
 	  path: '/income/friend',
 	  name: 'IncomeDetailFriend',
-	  component: IncomeDetailFriend
+	  component: IncomeDetailFriend,
+	  props: true
 	},
 	{
 	  path: '/invite',
@@ -33,7 +35,8 @@ export default new Router({
 	{
 	  path: '/invite/friend',
 	  name: 'InviteDetailFriend',
-	  component: InviteDetailFriend
+	  component: InviteDetailFriend,
+	  props: true
 	},
     {
       name: 'hotelDetail',

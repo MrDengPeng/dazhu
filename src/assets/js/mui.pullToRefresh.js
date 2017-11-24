@@ -1,4 +1,4 @@
-function pull($, window, document) {
+export function pull($, window, document) {
 	var STATE_BEFORECHANGEOFFSET = 'beforeChangeOffset';
 	var STATE_AFTERCHANGEOFFSET = 'afterChangeOffset';
 
@@ -404,7 +404,4 @@ function pull($, window, document) {
 		});
 		return pullRefreshApis.length === 1 ? pullRefreshApis[0] : pullRefreshApis;
 	}
-}
-export {
-	pull
 }
