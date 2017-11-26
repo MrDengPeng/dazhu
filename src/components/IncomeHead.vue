@@ -1,19 +1,20 @@
 <template>
 	<div class="wrap">
 		<div class="avatar-box" v-if="showAvatar">
-			<div class="avatar"><img src="static/images/default_avatar.png"/></div>
+			<div class="avatar"><img :src="userInfo.headImg" @error="imgError"/></div>
 		</div>
 		<div v-if="showAvatar">
 			<div class="info" v-if="showIncome">
-				<div class="item">累计收益<br /><span><em>0</em>元</span></div>
-				<div class="item">成功邀请<br /><span><em>0</em>人</span></div>
+				<div class="item">累计收益<br /><span><em>{{userInfo.money}}</em>元</span></div>
+				<div class="item">成功邀请<br /><span><em>{{userInfo.num}}</em>人</span></div>
 			</div>
-			<div class="invite-num" v-else>成功邀请4人</div>	
+			<div class="invite-num" v-else>成功邀请{{userInfo.num}}人</div>	
 		</div>
 		
 		<div class="box clear">
 			<div class="search lf">
-				<input type="search" placeholder="输入关键字查询" />
+				<!--<form action="javascript:return true;"><input type="search" v-model="keyword" :keyup.enter="emitEvent" placeholder="输入关键字查询" /></form>-->
+				<input type="search" @keyup.enter="emitEvent" placeholder="输入关键字查询" />
 			</div>
 			<span class="date rf" @click="dtpicker"></span>
 		</div>
@@ -23,16 +24,23 @@
 <script>
 	export default {
 		name: 'IncomeHead',
-		props: ['showAvatar','invite'],
+		props: ['showAvatar','invite', 'userInfo'],
 		methods: {
 			dtpicker(){
 				this.$emit('dtpicker');
+			},
+			emitEvent(e){
+				this.$emit('onsearch', e.target.value);
+			},
+			imgError(e){
+				e.target.src = 'static/images/default_avatar.png' 
 			}
 		},
 		computed: {
 			showIncome(){
 				return this.showAvatar && !this.invite
 			}
+			
 		}
 	}
 </script>
@@ -55,12 +63,12 @@
 	}
 	.avatar img{
 		display: block;
-		width: 100%;
+		width: 102%;
 		min-height: 100%;
 		position: relative;
 		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
+		left: 51%;
+		transform: translate(-51%,-50%);
 	}
 	.invite-num{
 		height: 36px;

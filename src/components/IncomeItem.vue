@@ -1,44 +1,21 @@
 <template>
 	<div class="income-list">
 		<div class="head after">
-			<span class="date">2017-10-06</span>
-			<span class="num">邀请2人共4人</span>
+			<span class="date">{{item.date}}</span>
+			<span class="num">{{item.invitationNum}}</span>
 		</div>
 		<ul class="list">
-			<li class="after" @click="noticeParent">
+			<li class="after" v-for="item in item.list" :key="item.id" @click="$emit('jump',item.id)">
 				<div class="left">
 					<div class="avatar"><img src="static/images/default_avatar.png"/></div>
 					<div class="info">
-						<p>张蓝蓝 136****9644</p>
-						<p v-if="income">10-07  20:48 新用户注册</p>
+						<p>{{item.nickName + ' ' + item.mobile}}</p>
+						<p v-if="income">{{item.rechargeTime}}</p>
 					</div>
 				</div>
 				<div class="rigth">
-					<div class="income" :class="{'f-color': income}">10元奖励 <span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
-				</div>
-			</li>
-			<li class="after">
-				<div class="left">
-					<div class="avatar"><img src="static/images/default_avatar.png"/></div>
-					<div class="info">
-						<p>张蓝蓝 136****9644</p>
-						<p v-if="income">10-07  20:48 新用户注册</p>
-					</div>
-				</div>
-				<div class="rigth">
-					<div class="income" :class="{'f-color': income}">10元奖励 <span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
-				</div>
-			</li>
-			<li class="after">
-				<div class="left">
-					<div class="avatar"><img src="static/images/default_avatar.png"/></div>
-					<div class="info">
-						<p>张蓝蓝 136****9644</p>
-						<p v-if="income">10-07  20:48 新用户注册</p>
-					</div>
-				</div>
-				<div class="rigth">
-					<div class="income" :class="{'f-color': income}">10元奖励 <span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
+					<div class="income" v-if="item.rechargeMoney" :class="{'f-color': income}">{{item.rechargeMoney}}<span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
+					<div class="income" v-else :class="{'f-color': income}">{{item.num}}<span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
 				</div>
 			</li>
 		</ul>
@@ -48,11 +25,9 @@
 <script>
 	export default {
 		name: 'IncomeItem',
-		props: ['income', 'showArrow'],
+		props: ['income', 'showArrow', 'item'],
 		methods: {
-			noticeParent(){
-				this.$emit('jump');
-			}
+			
 		}
 	}
 </script>

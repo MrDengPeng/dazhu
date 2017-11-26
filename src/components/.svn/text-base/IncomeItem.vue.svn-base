@@ -58,6 +58,9 @@
 </script>
 
 <style scoped>
+	.mui-icon-arrowright{
+		margin-right: -20px;
+	}
 	.income-list{
 		background-color: #fff;
 		margin-bottom: 20px;
@@ -101,7 +104,6 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 0 30px;
-		padding-right: 10px;
 	}
 	.after:after{
 		content: '';

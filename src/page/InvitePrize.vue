@@ -1,5 +1,6 @@
 <template>
 	<div class="wrapper">
+		<load-statu v-show="loadShow"/>
 		<head-top v-if="headTop" head-title="邀请有奖"/>
 		<div id="pullrefresh" class="mui-scroll-wrapper" :style="{top: topDistance}">
 			<div class="mui-scroll">
@@ -7,7 +8,7 @@
 					<div class="content-box">
 						<img class="head-img" src="static/images/yq_bg.png"/>
 						<div class="info">
-							<router-link to="/income" class="item">累计收益<br /><span><em>{{data.money}}</em>元</span></router-link>
+							<router-link :to="subMoneyArr" class="item">累计收益<br /><span><em>{{data.money}}</em>元</span></router-link>
 							<router-link to="/invite" class="item">成功邀请<br /><span><em>{{data.num}}</em>人</span></router-link>
 						</div>
 						<div class="code-box">
@@ -29,15 +30,16 @@
 <script>
 	import { mapState } from 'vuex'
 	import HeadTop from '@/components/HeadTop'
-	
 	export default {
 		name: 'InvitePrize',
 		data(){
 			return {
+				loadShow: false,
 				data:{
 					code: '000000',
 					money: 0,
-					num: 0
+					num: 0,
+					moneyArr: [0, 0, 0]
 				}
 			}
 		},
@@ -48,6 +50,9 @@
 			...mapState(['headTop']),
 			topDistance(){
 				return this.$store.state.headTop?'1.173rem':''
+			},
+			subMoneyArr(){
+				return '/income?moneyArr='+this.data.moneyArr.join();
 			}
 		},
 		methods: {
@@ -55,36 +60,41 @@
 				this.$store.dispatch('headTop');
 			},
 			initData(refresh){
-				var self = this;
-				var params = new URLSearchParams();
-				params.append('token', 'NjczNjF8ZGh1cDhmcXoyOXwxODkzODg4NjA1Mw==');
-				this.$axios.post('user/listInvitationCode', params).then(function(res){
-					console.log(res.data);
-					refresh && self.mui('#pullrefresh').pullRefresh().endPulldownToRefresh();					
-					if(res.data.status == 200){
-						let el = document.getElementById('qrcode');						
-						el.innerHTML = '';
-						self.$data.data = Object.assign({}, self.$data.data, res.data.response);
-						import('@/assets/js/erweima').then(function(obj){
-							new obj.QRCode(el, {
-					            text: res.data.response.url,
-					            width: window.innerWidth/375*110,
-					            height: window.innerWidth/375*110
-					        });
-						})
-					}else{
-						self.mui.toast(res.data.message);
+				this.loadShow = !this.loadShow;
+				this.$post('user/listInvitationCode', {token: this.$token}).then(
+					res => {
+						console.log(res.data);
+						this.loadShow = !this.loadShow;
+						refresh && this.$mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+						if(res.data.status == 200){
+							let el = document.getElementById('qrcode');						
+							el.innerHTML = '';
+							this.data = Object.assign({}, this.data, res.data.response);
+							import('@/assets/js/erweima').then(function(obj){
+								new obj.QRCode(el, {
+						            text: res.data.response.url,
+						            width: window.innerWidth/375*110,
+						            height: window.innerWidth/375*110
+						        });
+							})
+						}else{
+							this.$mui.toast(res.data.message);
+						}
 					}
-				}).catch(function(err){
-					console.log(err);
-				})
+					
+				).catch(					
+					err => {
+						console.log(err);
+						this.loadShow = !this.loadShow;
+						'message' in err && this.$mui.toast(err.message);
+					}
+				)
 			}
 		},
-		mounted(){
-			
+		mounted(){			
 			var self = this;
 			this.initData();
-			this.mui.init({
+			this.$mui.init({
 			  pullRefresh : {
 			    container:"#pullrefresh",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
 			    down : {
@@ -99,16 +109,12 @@
 			    }
 			  }
 			});
-			this.mui('.mui-scroll-wrapper').scroll({
-				indicators: false
-			})
 		}
 	}
 </script>
 <style>
 	@import '~assets/style/mui.picker.min';
-	
-	
+		
 	.mui-scrollbar.mui-scrollbar-vertical{
 		display: none;
 	}
