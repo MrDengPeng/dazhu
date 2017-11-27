@@ -5,11 +5,13 @@ const IncomeDetail = r => require.ensure([], () => r(require('@/page/IncomeDetai
 const IncomeDetailFriend = r => require.ensure([], () => r(require('@/page/IncomeDetailFriend')), 'IncomeDetailFriend')
 const InviteDetail = r => require.ensure([], () => r(require('@/page/InviteDetail')), 'InviteDetail')
 const InviteDetailFriend = r => require.ensure([], () => r(require('@/page/InviteDetailFriend')), 'InviteDetailFriend')
+const EvaluationUser = r => require.ensure([], () => r(require('@/page/EvaluationUser')), 'EvaluationUser')
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+  /*dengpeng router*/
   	{
 	  path: '/',
 	  name: 'InvitePrize',
@@ -38,6 +40,12 @@ export default new Router({
 	  component: InviteDetailFriend,
 	  props: true
 	},
+	{
+	  path: '/evaluser',
+	  name: 'EvaluationUser',
+	  component: EvaluationUser
+	},
+	/*xuqijun router*/
     {
       name: 'hotelDetail',
       path: '/hotelDetail',

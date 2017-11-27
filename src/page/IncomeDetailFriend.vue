@@ -1,8 +1,8 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="headTop" head-title="收益明细"/>
-		<div class="wrap-position" :class="{'head-top': headTop}">
+		<head-top v-if="$store.state.headTop" head-title="收益明细"/>
+		<div class="wrap-position" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="true" @dtpicker="dtpickerTap" @onsearch="searchData" :userInfo="userInfo"/>
 			<!--<mui-slider-tab top="5.253rem"/>-->
 			<mui-slider-tab top="5.253rem" :showArrow="false" :moneyArr="userInfo.moneyArr.join()" :tabDataOne="tabDataOne" :tabDataTwo="tabDataTwo" :tabDataThree="tabDataThree"/>
@@ -91,9 +91,7 @@
 			)
 		},
 		computed: {
-			headTop(){
-				return this.$store.state.headTop
-			}
+			
 		},
 		methods: {
 			getData(param, index, pullSelf, renderType){

@@ -1,8 +1,8 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="headTop" head-title="成功邀请"/>
-		<div class="wrap-position mui-content" :class="{'head-top': headTop}">
+		<head-top v-if="$store.state.headTop" head-title="成功邀请"/>
+		<div class="wrap-position mui-content" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="false" @dtpicker="dtpickerTap" @onsearch="searchData"/>
 			<div id="pullrefresh" class="mui-scroll-wrapper" style="top: 1.36rem;">
 				<div class="mui-scroll">
@@ -51,10 +51,7 @@
 			this.getData();
 		},
 		computed: {
-			headTop(){
-				return this.$store.state.headTop
-			},
-			
+
 		},
 		methods: {
 			//请求数据

@@ -1,44 +1,58 @@
 <template>
 	<div class="income-list">
-		<div class="head after">
+		<div class="head after" @click="show = !show">
 			<span class="date">{{item.date}}</span>
 			<span class="num">{{item.invitationNum}}</span>
 		</div>
-		<ul class="list">
-			<li class="after" v-for="item in item.list" :key="item.id" @click="$emit('jump',item.id)">
-				<div class="left">
-					<div class="avatar"><img src="static/images/default_avatar.png"/></div>
-					<div class="info">
-						<p>{{item.nickName + ' ' + item.mobile}}</p>
-						<p v-if="income">{{item.rechargeTime}}</p>
+		<transition name="my-slide">
+			<ul class="list" v-show="show">
+				<li class="after" v-for="item in item.list" :key="item.id" @click="$emit('jump',item.id)">
+					<div class="left">
+						<div class="avatar"><img src="static/images/default_avatar.png" /></div>
+						<div class="info">
+							<p>{{item.nickName + ' ' + item.mobile}}</p>
+							<p v-if="income">{{item.rechargeTime}}</p>
+						</div>
 					</div>
-				</div>
-				<div class="rigth">
-					<div class="income" v-if="item.rechargeMoney" :class="{'f-color': income}">{{item.rechargeMoney}}<span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
-					<div class="income" v-else :class="{'f-color': income}">{{item.num}}<span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
-				</div>
-			</li>
-		</ul>
+					<div class="rigth">
+						<div class="income" v-if="item.rechargeMoney" :class="{'f-color': income}">{{item.rechargeMoney}}<span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
+						<div class="income" v-else :class="{'f-color': income}">{{item.num}}<span v-if="showArrow" class="mui-icon mui-icon-arrowright"></span></div>
+					</div>
+				</li>
+			</ul>
+		</transition>
 	</div>
 </template>
 
 <script>
 	export default {
 		name: 'IncomeItem',
-		props: ['income', 'showArrow', 'item'],
-		methods: {
-			
-		}
+		data(){
+			return {
+				show: true
+			}
+		},
+		props: ['income', 'showArrow', 'item']
 	}
 </script>
 
 <style scoped>
+	.my-slide-enter-active, .my-slide-leave-active{
+		transition: all .4s;
+		transform-origin: top;
+	}
+	.my-slide-enter, .my-slide-leave-to{		
+		opacity: 0;
+		transform: translateY(-100%);
+		
+	}
 	.mui-icon-arrowright{
 		margin-right: -20px;
 	}
 	.income-list{
 		background-color: #fff;
 		margin-bottom: 20px;
+		overflow: hidden;
 	}
 	.income-list .head{
 		position: relative;
@@ -46,6 +60,8 @@
 		justify-content: space-between;
 		line-height: 80px;
 		padding: 0 30px;
+		background-color: #fff;
+		z-index: 1;
 	}
 	.income-list .head .date{
 		color: #333;
@@ -71,6 +87,10 @@
 		width: 100%;
 		min-height: 100%;
 		transform: translate(-50%,-50%);
+	}
+	.list{
+		position: relative;
+		overflow: hidden;
 	}
 	.list li{
 		position: relative;

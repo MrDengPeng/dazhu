@@ -1,7 +1,7 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="headTop" head-title="邀请有奖"/>
+		<head-top v-if="$store.state.headTop" head-title="邀请有奖"/>
 		<div id="pullrefresh" class="mui-scroll-wrapper" :style="{top: topDistance}">
 			<div class="mui-scroll">
 				<div class="wrap-sub">

@@ -1,5 +1,5 @@
 <template>
-	<header class="head-top">
+	<header class="head">
 		<div class="return" @click="$router.go(-1)"></div>
 		<div class="title">{{headTitle}}</div>
 		<div></div>
@@ -14,7 +14,7 @@
 </script>
 
 <style scoped>
-	.head-top{
+	.head{
 		position: fixed;
 		top: 0;
 		left: 0;

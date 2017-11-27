@@ -1,8 +1,8 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="headTop" :head-title="userInfo.nickName"/>
-		<div class="wrap-position" :class="{'head-top': headTop}">
+		<head-top v-if="$store.state.headTop" :head-title="userInfo.nickName"/>
+		<div class="wrap-position" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="true" :invite="true" @dtpicker="dtpickerTap" @onsearch="searchData" :userInfo="userInfo"/>
 			<div id="pullrefresh" class="mui-scroll-wrapper" style="top: 4.927rem;">
 				<div class="mui-scroll">
@@ -64,9 +64,7 @@
 			)
 		},
 		computed: {
-			headTop(){
-				return this.$store.state.headTop
-			}
+			
 		},
 		methods: {
 			//请求数据

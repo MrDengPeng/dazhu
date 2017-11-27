@@ -1,8 +1,8 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="headTop" head-title="收益明细"/>
-		<div class="wrap-position" :class="{'head-top': headTop}">
+		<head-top v-if="$store.state.headTop" head-title="收益明细"/>
+		<div class="wrap-position" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="false" @dtpicker="dtpickerTap" @onsearch="searchData"/>
 			<mui-slider-tab @jump="detailFriendTap" top="1.227rem" :showArrow="true" :moneyArr="moneyArr" :tabDataOne="tabDataOne" :tabDataTwo="tabDataTwo" :tabDataThree="tabDataThree"/>
 		</div>		
@@ -79,10 +79,7 @@
 			})(this.$mui);
 		},
 		computed: {
-			//是否显示header
-			headTop(){
-				return this.$store.state.headTop
-			}
+			
 		},
 		methods: {
 			//请求数据
