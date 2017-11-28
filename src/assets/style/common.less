@@ -204,6 +204,44 @@ textarea { -webkit-appearance: none;}
 .btn-big:active{
     opacity: .8;
 }
+.g-avatar{
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.g-avatar > img{
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);    
+}
+.img-center{
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+.after-btmline:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #DDDDDD;
+    transform: scaleY(.5);
+    z-index: 2;
+}
+.after-btmline.a-top:after{
+    top: 0;
+    bottom: auto;
+}
 .no-income{
     position: absolute;
     top: 0;
@@ -251,6 +289,7 @@ textarea { -webkit-appearance: none;}
 .head-top{
     top: 1.173rem !important;
 }
+
 @keyframes backOpacity{
    0%   { opacity: 1 }
    25%  { opacity: .5 }

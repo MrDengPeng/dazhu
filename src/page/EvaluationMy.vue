@@ -1,11 +1,20 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="$store.state.headTop" head-title="用户评价" :bgWhite="true"/>
+		<head-top v-if="$store.state.headTop" head-title="我的评价" :bgWhite="true"/>
 		<div id="pullrefresh" class="mui-scroll-wrapper" :class="{'head-top': $store.state.headTop}">
 			<div class="mui-scroll">
 				<div>
-					<evaluation-item v-for="item in fornum" :index="item" :userEval="true"/>
+					<div class="wrap" v-for="item in fornum" :key="item">
+						<div class="item-head after-btmline" @click="detailTap">
+							<div class="tit">
+								<span class="name">时租酒店</span>
+								<span>305 大床房</span>
+							</div>
+							<div class="mui-icon mui-icon-arrowright"></div>
+						</div>
+						<evaluation-item :index="item" :myEval="true" @del="delItem" />
+					</div>
 				</div>
 			</div>
 		</div>		
@@ -16,7 +25,7 @@
 	import HeadTop from '@/components/HeadTop'
 	import EvaluationItem from '@/components/EvaluationItem'
 	export default {
-		name: 'EvaluationUser',
+		name: 'EvaluationMy',
 		data(){
 			return {
 				loadShow: false,
@@ -71,6 +80,14 @@
 					
 				}
 				
+			},
+			/*删除一条评论*/
+			delItem(index){
+				console.log(index);
+			},
+			//进入子级页面
+			detailTap(){
+				this.$router.push({ name: 'EvaluationMyDetail'})
 			}
 		},
 		components: {
@@ -79,4 +96,33 @@
 		}
 	}
 </script>
-
+<style scoped>
+	.mui-icon-arrowright{
+		color: #afafaf;
+		margin-right: -20px;
+	}
+	.wrap{
+		background-color: #fff;
+		margin-bottom: 20px;
+	}
+	.wrap:last-child{
+		margin-bottom: 0;
+	}
+	.item-head{
+		position: relative;
+		height: 80px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 30px;
+	}
+	.item-head .tit{
+		font-size: 24px;
+		color: #666;
+	}
+	.item-head .name{
+		color: #242424;
+		font-size: 32px;
+		margin-right: 30px;
+	}
+</style>

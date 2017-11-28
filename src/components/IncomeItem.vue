@@ -1,12 +1,12 @@
 <template>
 	<div class="income-list">
-		<div class="head after" @click="show = !show">
+		<div class="head after-btmline" @click="show = !show">
 			<span class="date">{{item.date}}</span>
 			<span class="num">{{item.invitationNum}}</span>
 		</div>
 		<transition name="my-slide">
 			<ul class="list" v-show="show">
-				<li class="after" v-for="item in item.list" :key="item.id" @click="$emit('jump',item.id)">
+				<li class="after-btmline" v-for="item in item.list" :key="item.id" @click="$emit('jump',item.id)">
 					<div class="left">
 						<div class="avatar"><img src="static/images/default_avatar.png" /></div>
 						<div class="info">
@@ -72,6 +72,7 @@
 		font-size: 24px;
 	}
 	.avatar{
+		flex-shrink: 0;
 		width: 80px;
 		height: 80px;
 		border: 1px solid #FF7000;/*no*/
@@ -100,27 +101,23 @@
 		justify-content: space-between;
 		padding: 0 30px;
 	}
-	.after:after{
-		content: '';
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 1px;/*no*/
-		transform: scaleY(.5);
-		background-color: #e9e9e9;
-	}
-	.list .after:after{
+	.list .after-btmline:after{
 		left: 30px;
 	}
-	.list .after:last-child:after{
+	.list .after-btmline:last-child:after{
 		display: none;
 	}
 	.list .left{
 		display: flex;
 		align-items: center;
 	}
+	.info{
+		max-width: 350px;
+	}
 	.info p{
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 		margin: 0;
 	}
 	.info p:nth-child(1){
@@ -132,6 +129,7 @@
 		margin-top: 6px;
 	}
 	.list .rigth{
+		flex-shrink: 0;
 		line-height: 48px;
 	}
 	.income{

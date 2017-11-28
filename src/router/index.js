@@ -6,6 +6,9 @@ const IncomeDetailFriend = r => require.ensure([], () => r(require('@/page/Incom
 const InviteDetail = r => require.ensure([], () => r(require('@/page/InviteDetail')), 'InviteDetail')
 const InviteDetailFriend = r => require.ensure([], () => r(require('@/page/InviteDetailFriend')), 'InviteDetailFriend')
 const EvaluationUser = r => require.ensure([], () => r(require('@/page/EvaluationUser')), 'EvaluationUser')
+const EvaluationMy = r => require.ensure([], () => r(require('@/page/EvaluationMy')), 'EvaluationMy')
+const EvaluationMyDetail = r => require.ensure([], () => r(require('@/page/EvaluationMyDetail')), 'EvaluationMyDetail')
+const CouponMy = r => require.ensure([], () => r(require('@/page/CouponMy')), 'CouponMy')
 
 Vue.use(Router)
 
@@ -44,6 +47,21 @@ export default new Router({
 	  path: '/evaluser',
 	  name: 'EvaluationUser',
 	  component: EvaluationUser
+	},
+	{
+	  path: '/evalmy',
+	  name: 'EvaluationMy',
+	  component: EvaluationMy
+	},
+	{
+	  path: '/evalmy/detail',
+	  name: 'EvaluationMyDetail',
+	  component: EvaluationMyDetail
+	},
+	{
+	  path: '/coupon',
+	  name: 'CouponMy',
+	  component: CouponMy
 	},
 	/*xuqijun router*/
     {

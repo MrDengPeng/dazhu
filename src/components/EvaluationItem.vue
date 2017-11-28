@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap">
+	<div class="wrap" :class="{'after-btmline': userEval}">
 		<div class="avatar"><img src="static/images/eval_avatar.png"/></div>
 		<div class="content">
 			<div class="head">
@@ -23,21 +23,21 @@
 				<a class="btn" v-if="ellipsisBool" @click="hideEval = !hideEval">{{hideEval ? '全文' : '收起'}}</a>
 			</div>
 			<div class="img-list">
-				<span class="item"><img src="static/images/imglist.png"/></span>
-				<span class="item"><img src="static/images/imglist.png"/></span>
-				<span class="item"><img src="static/images/imglist.png"/></span>
-				<span class="item"><img src="static/images/imglist.png"/></span>
-				<span class="item"><img src="static/images/imglist.png"/></span>
-				<span class="item"><img src="static/images/imglist.png"/></span>
+				<span class="item"><img src="static/images/imglist.png" data-preview-src="" :data-preview-group="index"/></span>
+				<span class="item"><img src="static/images/imglist.png" data-preview-src="" :data-preview-group="index"/></span>
+				<span class="item"><img src="static/images/imglist.png" data-preview-src="" :data-preview-group="index"/></span>
+				<span class="item"><img src="static/images/imglist.png" data-preview-src="" :data-preview-group="index"/></span>
+				<span class="item"><img src="static/images/imglist.png" data-preview-src="" :data-preview-group="index"/></span>
+				<span class="item"><img src="static/images/imglist.png" data-preview-src="" :data-preview-group="index"/></span>
 			</div>
 			<div class="info">
 				<div class="left">2017-11-10</div>
-				<div class="right">
+				<div class="right" v-if="myEval">
 					<span class="f-color">回复({{replyList.length}})</span>
-					<span class="del">删除</span>
+					<span class="del" @click="$emit('del', index)">删除</span>
 				</div>
 			</div>
-			<div class="reply-box">
+			<div class="reply-box" v-if="userEval">
 				<p class="item" v-for="(item, index) in replyList" v-show="replyShow(index) || replyShowAll" :key="index"><span class="lable">{{item.type==1?'用户':'商户'}}回复： </span>{{item.content}}</p>
 				<div class="clear" v-if="replyList.length > 1">
 					<a class="btn f-color rf" @click="replyShow">{{comReply}}</a>
@@ -65,6 +65,10 @@
 				}]
 			}
 		},
+		props: ['index', 'myEval', 'userEval'],
+		mounted(){
+			
+		},
 		computed: {
 			ellipsisBool(){
 				return this.evalText.length > 80 ? true : false
@@ -90,10 +94,18 @@
 </script>
 
 <style scoped>
+	@import '~assets/style/imageview';
 	.wrap{
+		position: relative;
 		padding: 30px;
 		background-color: #fff;
 		overflow: hidden;
+	}
+	.after-btmline:last-child:after{
+		display: none;
+	}
+	.after-btmline:after{
+		left: .4rem;
 	}
 	.avatar{
 		float: left;

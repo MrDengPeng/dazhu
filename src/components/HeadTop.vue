@@ -1,5 +1,5 @@
 <template>
-	<header class="head">
+	<header class="head" :class="{'white-head': bgWhite, 'after-btmline': bgWhite}">
 		<div class="return" @click="$router.go(-1)"></div>
 		<div class="title">{{headTitle}}</div>
 		<div></div>
@@ -9,11 +9,14 @@
 <script>
 	export default {
 		name: 'HeadTop',
-		props: ['headTitle'],
+		props: ['headTitle', 'bgWhite'],
 	}
 </script>
 
 <style scoped>
+	.after-btmline:after{
+		background-color: #e6e6e6;
+	}
 	.head{
 		position: fixed;
 		top: 0;
@@ -23,6 +26,15 @@
 		background-color: #FF7000;
 		font-size: 32px;
 		z-index: 99;
+	}
+	.white-head{
+		background-color: #fff;
+	}
+	.white-head .title{
+		color: #242424;
+	}
+	.white-head .return{
+		background: url(~static/images/i_return_new.png) no-repeat center/22px 44px;
 	}
 	.return{
 		position: absolute;
