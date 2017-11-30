@@ -33,7 +33,7 @@
 				this.$emit('onsearch', e.target.value);
 			},
 			imgError(e){
-				e.target.src = 'static/images/default_avatar.png' 
+				e.target.src = '../static/images/default_avatar.png' 
 			}
 		},
 		computed: {

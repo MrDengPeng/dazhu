@@ -1,7 +1,7 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="$store.state.headTop" head-title="收益明细"/>
+		<header-top v-if="$store.state.headTop" head-title="收益明细"/>
 		<div class="wrap-position" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="false" @dtpicker="dtpickerTap" @onsearch="searchData"/>
 			<mui-slider-tab @jump="detailFriendTap" top="1.227rem" :showArrow="true" :moneyArr="moneyArr" :tabDataOne="tabDataOne" :tabDataTwo="tabDataTwo" :tabDataThree="tabDataThree"/>
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-	import HeadTop from '@/components/HeadTop'
 	import IncomeHead from '@/components/IncomeHead'
 	import MuiSliderTab from '@/components/MuiSliderTab'
 	import {pull} from '@/assets/js/mui.pullToRefresh'
@@ -194,7 +193,6 @@
 			
 		},
 		components: {
-			HeadTop,
 			IncomeHead,
 			MuiSliderTab
 		}

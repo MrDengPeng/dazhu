@@ -9,6 +9,8 @@ import router from './router'
 import flexible from 'amfe-flexible'
 //import './assets/js/rem'
 
+import HeadTop from './components/HeadTop'
+
 import FastClick from 'fastClick'
 import store from './store'
 import {http} from './assets/js/http'
@@ -31,7 +33,17 @@ if ('addEventListener' in document) {
 }
 Vue.config.productionTip = false
 Vue.component('load-statu', {
-	template: '<div class="load-wrap"><div class="load"><img src="static/images/load.gif"></div></div>'
+	props: ['wrap'],
+	template: '<div><div class="load-wrap" v-show="wrap"></div><div class="load"><img class="img-center" src="../static/images/load.gif"></div></div>'
+});
+Vue.component('header-top', {
+	props: ['headTitle', 'bgWhite'],
+	template: '\
+		<HeadTop :head-title="headTitle" :bgWhite="bgWhite">\
+			<slot name="use" slot="use"></slot>\
+		</HeadTop>\
+		',
+	components: { HeadTop }
 });
 /* eslint-disable no-new */
 import('@/assets/js/mui.min').then(mui => {

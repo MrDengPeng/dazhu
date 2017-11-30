@@ -8,7 +8,7 @@
 			<ul class="list" v-show="show">
 				<li class="after-btmline" v-for="item in item.list" :key="item.id" @click="$emit('jump',item.id)">
 					<div class="left">
-						<div class="avatar"><img src="static/images/default_avatar.png" /></div>
+						<div class="avatar"><img src="~static/images/default_avatar.png" /></div>
 						<div class="info">
 							<p>{{item.nickName + ' ' + item.mobile}}</p>
 							<p v-if="income">{{item.rechargeTime}}</p>

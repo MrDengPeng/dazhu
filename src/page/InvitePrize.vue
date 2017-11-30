@@ -1,14 +1,14 @@
 <template>
 	<div class="wrapper">
-		<load-statu v-show="loadShow"/>
-		<head-top v-if="$store.state.headTop" head-title="邀请有奖"/>
+		<load-statu v-show="loadShow" :wrap="loadWrap"/>
+		<header-top v-if="$store.state.headTop" head-title="邀请有奖"/>
 		<div id="pullrefresh" class="mui-scroll-wrapper" :style="{top: topDistance}">
 			<div class="mui-scroll">
 				<div class="wrap-sub">
 					<div class="content-box">
 						<img class="head-img" src="static/images/yq_bg.png"/>
 						<div class="info">
-							<router-link :to="subMoneyArr" class="item">累计收益<br /><span><em>{{data.money}}</em>元</span></router-link>
+							<router-link :to="`/income/${data.moneyArr}`" class="item">累计收益<br /><span><em>{{data.money}}</em>元</span></router-link>
 							<router-link to="/invite" class="item">成功邀请<br /><span><em>{{data.num}}</em>人</span></router-link>
 						</div>
 						<div class="code-box">
@@ -28,13 +28,14 @@
 </template>
 
 <script>
+	const money = [11,23,21]
 	import { mapState } from 'vuex'
-	import HeadTop from '@/components/HeadTop'
 	export default {
 		name: 'InvitePrize',
 		data(){
 			return {
 				loadShow: false,
+				loadWrap: false,
 				data:{
 					code: '000000',
 					money: 0,
@@ -43,16 +44,29 @@
 				}
 			}
 		},
-		components: {
-			HeadTop
+		mounted(){			
+			var self = this;
+			//this.initData();
+			this.$mui.init({
+			  pullRefresh : {
+			    container:"#pullrefresh",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+			    down : {
+			      height:50,//可选,默认50.触发下拉刷新拖动距离,
+			      auto: true,//可选,默认false.首次加载自动下拉刷新一次
+			      contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+			      contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+			      contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+			      callback : function(){
+			      	self.initData(true);
+			      } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+			    }
+			  }
+			});
 		},
 		computed: {
 			...mapState(['headTop']),
 			topDistance(){
 				return this.$store.state.headTop?'1.173rem':''
-			},
-			subMoneyArr(){
-				return '/income?moneyArr='+this.data.moneyArr.join();
 			}
 		},
 		methods: {
@@ -60,11 +74,11 @@
 				this.$store.dispatch('headTop');
 			},
 			initData(refresh){
-				this.loadShow = !this.loadShow;
+				//this.loadShow = !this.loadShow;
 				this.$post('user/listInvitationCode', {token: this.$token}).then(
 					res => {
 						console.log(res.data);
-						this.loadShow = !this.loadShow;
+						//this.loadShow = !this.loadShow;
 						refresh && this.$mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						if(res.data.status == 200){
 							let el = document.getElementById('qrcode');						
@@ -85,30 +99,11 @@
 				).catch(					
 					err => {
 						console.log(err);
-						this.loadShow = !this.loadShow;
+						//this.loadShow = !this.loadShow;
 						'message' in err && this.$mui.toast(err.message);
 					}
 				)
 			}
-		},
-		mounted(){			
-			var self = this;
-			this.initData();
-			this.$mui.init({
-			  pullRefresh : {
-			    container:"#pullrefresh",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
-			    down : {
-			      height:50,//可选,默认50.触发下拉刷新拖动距离,
-			      auto: false,//可选,默认false.首次加载自动下拉刷新一次
-			      contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
-			      contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
-			      contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
-			      callback : function(){
-			      	self.initData(true);
-			      } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
-			    }
-			  }
-			});
 		}
 	}
 </script>

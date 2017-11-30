@@ -1,13 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/svn/project/!svn/ver/17929/weizhu_new/h5/trunk/static/images
-END
-i_search.png
-K 25
-svn:wc:ra_dav:version-url
-V 74
-/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_search.png
+/svn/project/!svn/ver/18082/weizhu_new/h5/trunk/static/images
 END
 load.gif
 K 25
@@ -15,23 +9,23 @@ svn:wc:ra_dav:version-url
 V 70
 /svn/project/!svn/ver/17991/weizhu_new/h5/trunk/static/images/load.gif
 END
-i_phone.png
-K 25
-svn:wc:ra_dav:version-url
-V 73
-/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_phone.png
-END
 yq_bg.png
 K 25
 svn:wc:ra_dav:version-url
 V 71
 /svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/yq_bg.png
 END
-default_avatar.png
+coupon.png
 K 25
 svn:wc:ra_dav:version-url
-V 80
-/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/static/images/default_avatar.png
+V 72
+/svn/project/!svn/ver/18082/weizhu_new/h5/trunk/static/images/coupon.png
+END
+i_collection.png
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_collection.png
 END
 i_arrow_b.png
 K 25
@@ -39,17 +33,59 @@ svn:wc:ra_dav:version-url
 V 75
 /svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_arrow_b.png
 END
+no_income.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/no_income.png
+END
+i_service.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_service.png
+END
+invalidCoupon.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/project/!svn/ver/18082/weizhu_new/h5/trunk/static/images/invalidCoupon.png
+END
+i_search.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_search.png
+END
+print_bg@2x.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/project/!svn/ver/18052/weizhu_new/h5/trunk/static/images/print_bg@2x.png
+END
+confirm_bg@2x.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/project/!svn/ver/18052/weizhu_new/h5/trunk/static/images/confirm_bg@2x.png
+END
+i_phone.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_phone.png
+END
+default_avatar.png
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/static/images/default_avatar.png
+END
 i_arrow_r.png
 K 25
 svn:wc:ra_dav:version-url
 V 75
 /svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_arrow_r.png
-END
-i_collection.png
-K 25
-svn:wc:ra_dav:version-url
-V 78
-/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_collection.png
 END
 i_img.png
 K 25
@@ -63,12 +99,6 @@ svn:wc:ra_dav:version-url
 V 72
 /svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_date.png
 END
-no_income.png
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/no_income.png
-END
 i_return.png
 K 25
 svn:wc:ra_dav:version-url
@@ -79,11 +109,5 @@ icon.png
 K 25
 svn:wc:ra_dav:version-url
 V 70
-/svn/project/!svn/ver/17929/weizhu_new/h5/trunk/static/images/icon.png
-END
-i_service.png
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_service.png
+/svn/project/!svn/ver/18052/weizhu_new/h5/trunk/static/images/icon.png
 END

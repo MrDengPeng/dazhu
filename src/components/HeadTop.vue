@@ -2,18 +2,26 @@
 	<header class="head" :class="{'white-head': bgWhite, 'after-btmline': bgWhite}">
 		<div class="return" @click="$router.go(-1)"></div>
 		<div class="title">{{headTitle}}</div>
-		<div></div>
+		<slot name="use"></slot>
 	</header>
 </template>
 
 <script>
 	export default {
 		name: 'HeadTop',
-		props: ['headTitle', 'bgWhite'],
+		props: ['headTitle', 'bgWhite']
 	}
 </script>
 
 <style scoped>
+	.head-use{
+		position: absolute;
+		top: 0;
+		right: 5px;
+		width: 88px;
+		height: 88px;
+		background: url(../../static/images/i_use.png) no-repeat center/45px 45px;
+	}
 	.after-btmline:after{
 		background-color: #e6e6e6;
 	}

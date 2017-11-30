@@ -1,7 +1,7 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="$store.state.headTop" head-title="成功邀请"/>
+		<header-top v-if="$store.state.headTop" head-title="成功邀请"/>
 		<div class="wrap-position mui-content" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="false" @dtpicker="dtpickerTap" @onsearch="searchData"/>
 			<div id="pullrefresh" class="mui-scroll-wrapper" style="top: 1.36rem;">
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-	import HeadTop from '@/components/HeadTop'
 	import IncomeHead from '@/components/IncomeHead'
 	import IncomeItem from '@/components/IncomeItem'
 	export default {
@@ -34,7 +33,7 @@
 		mounted(){
 			var self = this;
 			this.dtpicker = new this.$mui.DtPicker({"type":"date","beginYear":2014,"endYear":2020});
-			mui.init({
+			this.$mui.init({
 			  pullRefresh : {
 			    container: '#pullrefresh',//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
 			    up : {
@@ -63,9 +62,9 @@
 						let data = res.data.response;
 						this.loadShow = !this.loadShow;
 						if (data.length < this.param.pageSize) {
-				        	mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				        	this.$mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 				        } else {
-				        	mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+				        	this.$mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
 				        	//mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
 				        }
 						this.param.page++;
@@ -108,7 +107,6 @@
 			
 		},
 		components: {
-			HeadTop,
 			IncomeHead,
 			IncomeItem
 		}

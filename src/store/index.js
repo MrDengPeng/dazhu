@@ -6,7 +6,7 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-	headTop: true
+	headTop: false
 }
 
 export default new Vuex.Store({

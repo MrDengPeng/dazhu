@@ -1,7 +1,7 @@
 <template>
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
-		<head-top v-if="$store.state.headTop" head-title="我的评价" :bgWhite="true"/>
+		<header-top v-if="$store.state.headTop" head-title="我的评价" :bgWhite="true"/>
 		<div class="mui-scroll-wrapper" :class="{'head-top': $store.state.headTop}" style="bottom: 1.2rem;">
 			<div class="mui-scroll">
 				<div class="head">
@@ -20,12 +20,27 @@
 				</div>
 			</div>
 		</div>
+		<!--<div class="wrap-position" :class="{'head-top': $store.state.headTop}" style="bottom: 1.2rem;">
+			<div class="head">
+				<evaluation-item index="1" />
+				<div class="hotel-info">
+					<div class="img"><img class="img-center" src="static/images/imglist.png"/></div>
+					<div class="content">
+						<div class="tit"><span>时租酒店</span><br />202  温馨大床房</div>
+						<p class="time">入住时间：2017-11-09  10:30<br />退房时间：2017-11-09  17:30</p>
+					</div>
+				</div>
+			</div>
+			<div class="reply-box">
+				<div class="tit after-btmline">全部回复 (3)</div>
+				<reply-item v-for="item in 3" :key="item" />
+			</div>
+		</div>-->
 		<div class="reply-btn after-btmline a-top"><span>回复</span></div>
 	</div>
 </template>
 
 <script>
-	import HeadTop from '@/components/HeadTop'
 	import EvaluationItem from '@/components/EvaluationItem'
 	export default {
 		name: 'EvaluationMyDetail',
@@ -43,14 +58,13 @@
 			this.$mui.previewImage();
 			/*初始化滚动*/
 			this.$mui('.mui-scroll-wrapper').scroll({
-				deceleration: 0.0005
+				deceleration: 0.006
 			})
 		},
 		methods: {
 			
 		},
 		components: {
-			HeadTop,
 			EvaluationItem,
 			'reply-item': {
 				template: '\
