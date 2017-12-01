@@ -20,34 +20,42 @@ export default new Router({
 
   routes: [
   /*dengpeng router*/
-  	{
-	  path: '/',
+  {
+	  path: '',
+	  redirect: '/prize'	
+  },
+  {
+	  path: '/prize',
 	  name: 'InvitePrize',
-	  component: InvitePrize
-	},
-	{
-	  path: '/income/:moneyArr',
-	  name: 'IncomeDetail',
-	  component: IncomeDetail,
-	  props: true
-//	  props: (route) => ({moneyArr: route.query.moneyArr})
-	},
-	{
-	  path: '/income/friend',
-	  name: 'IncomeDetailFriend',
-	  component: IncomeDetailFriend,
-	  props: true
-	},
-	{
-	  path: '/invite',
-	  name: 'InviteDetail',
-	  component: InviteDetail
-	},
-	{
-	  path: '/invite/friend',
-	  name: 'InviteDetailFriend',
-	  component: InviteDetailFriend,
-	  props: true
+	  component: InvitePrize,
+	  children: [
+	  	{
+	  		path: 'income/:moneyArr',
+	  		component: IncomeDetail,
+	  		props: true,
+	  		children: [
+	  			{
+					  path: 'friend',
+					  name: 'IncomeDetailFriend',
+					  component: IncomeDetailFriend,
+					  props: true
+					}
+	  		]
+	  	},
+	  	{
+	  		path: 'invite',
+	  		component: InviteDetail,
+	  		children: [
+	  			{
+					  path: 'friend',
+					  name: 'InviteDetailFriend',
+					  component: InviteDetailFriend,
+					  props: true
+					}
+	  		]
+	  	}
+	  	
+	  ]
 	},
 	{
 	  path: '/evaluser',
@@ -57,12 +65,14 @@ export default new Router({
 	{
 	  path: '/evalmy',
 	  name: 'EvaluationMy',
-	  component: EvaluationMy
-	},
-	{
-	  path: '/evalmy/detail',
-	  name: 'EvaluationMyDetail',
-	  component: EvaluationMyDetail
+	  component: EvaluationMy,
+	  children: [
+	  	{
+			  path: 'detail',
+			  name: 'EvaluationMyDetail',
+			  component: EvaluationMyDetail
+			}
+	  ]
 	},
 	{
 	  path: '/coupon',

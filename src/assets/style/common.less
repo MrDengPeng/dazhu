@@ -275,6 +275,8 @@ textarea { -webkit-appearance: none;}
     position: relative;
     width: 100;
     height: 100%;
+    z-index: 100;
+    background-color: #F6F6F6;
 }
 .wrap-position{
    position: absolute;
@@ -286,7 +288,13 @@ textarea { -webkit-appearance: none;}
 .head-top{
     top: 1.173rem !important;
 }
-
+.router-slid-enter-active, .router-slid-leave-active {
+    transition: all .4s;
+}
+.router-slid-enter, .router-slid-leave-active {
+    transform: translate3d(2rem, 0, 0);
+    opacity: 0;
+}
 @keyframes backOpacity{
    0%   { opacity: 1 }
    25%  { opacity: .5 }

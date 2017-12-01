@@ -2,10 +2,10 @@
 	<div class="wrapper">
 		<load-statu v-show="loadShow"/>
 		<header-top v-if="$store.state.headTop" head-title="我的评价" :bgWhite="true"/>
-		<div class="mui-scroll-wrapper" :class="{'head-top': $store.state.headTop}" style="bottom: 1.2rem;">
+		<div class="mui-scroll-wrapper scope" :class="{'head-top': $store.state.headTop}" style="bottom: 1.2rem;">
 			<div class="mui-scroll">
 				<div class="head">
-					<evaluation-item index="1" />
+					<evaluation-item index="100" />
 					<div class="hotel-info">
 						<div class="img"><img class="img-center" src="static/images/imglist.png"/></div>
 						<div class="content">
@@ -16,7 +16,7 @@
 				</div>
 				<div class="reply-box">
 					<div class="tit after-btmline">全部回复 (3)</div>
-					<reply-item v-for="item in 3" />
+					<reply-item v-for="item in 3" :key="item" />
 				</div>
 			</div>
 		</div>
@@ -52,12 +52,12 @@
 		},
 		mounted(){
 			/*开启图片预览插件*/
-			this.$mui.muiSlider(this.$mui, window);
-			this.$mui.zoom(this.$mui, window);
-			this.$mui.preview(this.$mui, window);
-			this.$mui.previewImage();
+//			this.$mui.muiSlider(this.$mui, window);
+//			this.$mui.zoom(this.$mui, window);
+//			this.$mui.preview(this.$mui, window);
+//			this.$mui.previewImage();
 			/*初始化滚动*/
-			this.$mui('.mui-scroll-wrapper').scroll({
+			this.$mui('.mui-scroll-wrapper.scope').scroll({
 				deceleration: 0.006
 			})
 		},

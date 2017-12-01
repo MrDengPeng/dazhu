@@ -10,6 +10,8 @@ import flexible from 'amfe-flexible'
 //import './assets/js/rem'
 
 import HeadTop from './components/HeadTop'
+//import {utils} from './assets/js/utils'
+//utils(window)
 
 import FastClick from 'fastClick'
 import store from './store'
@@ -45,6 +47,20 @@ Vue.component('header-top', {
 		',
 	components: { HeadTop }
 });
+Vue.prototype.$callnative = function(funcName, args){
+    args = args || [];
+    if( /iPhone/.test(navigator.userAgent) ){
+        var url = "ss:"+funcName;
+        if(args){
+            url += "/";
+            url += JSON.stringify(args);
+        }
+        location.href = url;
+    }else{
+        window.native[funcName](JSON.stringify(args));
+
+    }
+}
 /* eslint-disable no-new */
 import('@/assets/js/mui.min').then(mui => {
 	Vue.prototype.$mui = mui;

@@ -4,7 +4,7 @@
 		<header-top v-if="$store.state.headTop" :head-title="userInfo.nickName"/>
 		<div class="wrap-position" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="true" :invite="true" @dtpicker="dtpickerTap" @onsearch="searchData" :userInfo="userInfo"/>
-			<div id="pullrefresh" class="mui-scroll-wrapper" style="top: 4.927rem;">
+			<div id="pullrefreshThree" class="mui-scroll-wrapper" style="top: 4.927rem;">
 				<div class="mui-scroll">
 					<!--<income-item :income="false"/>-->
 				</div>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+	import mui from '@/assets/js/mui_3'
+	import {picker} from '@/assets/js/mui.picker'
 	import IncomeHead from '@/components/IncomeHead'
 	import IncomeItem from '@/components/IncomeItem'
 	export default {
@@ -32,12 +34,15 @@
 			}
 		},
 		props: ['id'],
+		created(){
+			picker(mui, window, document);
+		},
 		mounted(){
 			var self = this;
-			this.dtpicker = new this.$mui.DtPicker({"type":"date","beginYear":2014,"endYear":2020});
+			this.dtpicker = new mui.DtPicker({"type":"date","beginYear":2014,"endYear":2020});
 			mui.init({
 			  pullRefresh : {
-			    container: '#pullrefresh',//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+			    container: '#pullrefreshThree',//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
 			    up : {
 			      height:50,//可选.默认50.触发上拉加载拖动距离
 			      auto:true,//可选,默认false.自动上拉加载一次
@@ -58,7 +63,7 @@
 			).catch(
 				err => {
 					console.log(err);
-					'message' in err && this.$mui.toast(err.message);
+					'message' in err && mui.toast(err.message);
 				}
 			)
 		},
@@ -75,10 +80,10 @@
 						let data = res.data.response;
 						this.loadShow = !this.loadShow;
 						if (data.length < this.param.pageSize) {
-				        	mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				        	mui('#pullrefreshThree').pullRefresh().endPullupToRefresh(true);
 				        } else {
-				        	mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
-				        	//mui('#pullrefresh').pullRefresh().enablePullupToRefresh();
+				        	mui('#pullrefreshThree').pullRefresh().endPullupToRefresh(false);
+				        	//mui('#pullrefreshThree').pullRefresh().enablePullupToRefresh();
 				        }
 						this.param.page++;
 						if(renderType == 'append'){
@@ -91,7 +96,7 @@
 					err => {
 						console.log(err);
 						this.loadShow = !this.loadShow;
-						'message' in err && this.$mui.toast(err.message);
+						'message' in err && mui.toast(err.message);
 					}
 				)
 			},
@@ -100,7 +105,7 @@
 				this.param.page = 1;
 				this.param.search = keyword;
 				this.getData();
-				this.$mui('#pullrefresh').scroll().scrollTo(0, 0);//滚动到顶部
+				mui('#pullrefreshThree').scroll().scrollTo(0, 0);//滚动到顶部
 				
 			},
 			//选择日期
@@ -110,7 +115,7 @@
 						this.param.page = 1;
 						this.param.date = rs.text;
 						this.getData();
-						this.$mui('#pullrefresh').scroll().scrollTo(0, 0);//滚动到顶部
+						mui('#pullrefreshThree').scroll().scrollTo(0, 0);//滚动到顶部
 					}
 				)
 			}

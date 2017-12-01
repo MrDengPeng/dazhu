@@ -6,7 +6,13 @@ import Qs from 'qs';
 
 var instance = axios.create({
     baseURL: 'http://192.168.0.110:8088/weizhu.api/api/',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    headers: { 
+    	'Content-Type': 'application/x-www-form-urlencoded',
+    	'token': 'Mzd8eGJwa3NmejljZXwxODkzODg4NjA1Mw==',
+    	'devices': 'ios',
+    	'version': '3.4'
+    },
+    timeout: 5000
 });
 const API_CODE = {
     SUCCESS: 200

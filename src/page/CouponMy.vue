@@ -35,9 +35,20 @@
 				couponCode: ''
 			}
 		},
+		created(){
+			window.coupon = () => {
+				alert('tiao');
+				this.$router.push({ name: 'UseDetail'})
+			}
+		},
 		mounted(){
 			this.$mui('.mui-scroll-wrapper').scroll({
 				deceleration: 0.0005
+			});
+			this.$callnative('head',{
+				img: '消费',
+				title: '优惠劵',
+				funName: 'coupon'
 			})
 		},
 		methods: {

@@ -5,7 +5,10 @@
 		<div class="wrap-position" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="false" @dtpicker="dtpickerTap" @onsearch="searchData"/>
 			<mui-slider-tab @jump="detailFriendTap" top="1.227rem" :showArrow="true" :moneyArr="moneyArr" :tabDataOne="tabDataOne" :tabDataTwo="tabDataTwo" :tabDataThree="tabDataThree"/>
-		</div>		
+		</div>
+		<transition name="router-slid" mode="out-in">
+			<router-view></router-view>
+		</transition>
 	</div>
 </template>
 

@@ -8,8 +8,8 @@
 					<div class="content-box">
 						<img class="head-img" src="static/images/yq_bg.png"/>
 						<div class="info">
-							<router-link :to="`/income/${data.moneyArr}`" class="item">累计收益<br /><span><em>{{data.money}}</em>元</span></router-link>
-							<router-link to="/invite" class="item">成功邀请<br /><span><em>{{data.num}}</em>人</span></router-link>
+							<router-link class="item" :to="`income/${data.moneyArr}`" append>累计收益<br /><span><em>{{data.money}}</em>元</span></router-link>
+							<router-link class="item" to="invite" append>成功邀请<br /><span><em>{{data.num}}</em>人</span></router-link>
 						</div>
 						<div class="code-box">
 							<div class="erwema" id="qrcode">
@@ -24,16 +24,20 @@
 				</div>
 			</div>	
 		</div>
+		<transition name="router-slid" mode="out-in">
+			<router-view></router-view>
+		</transition>
 	</div>
 </template>
 
 <script>
-	const money = [11,23,21]
+	
 	import { mapState } from 'vuex'
 	export default {
 		name: 'InvitePrize',
 		data(){
 			return {
+				mui: null,
 				loadShow: false,
 				loadWrap: false,
 				data:{

@@ -1,12 +1,12 @@
 <template>
-	<div class="wrapper">
+	<div class="wrapper" id="i_friend">
 		<load-statu v-show="loadShow"/>
 		<header-top v-if="$store.state.headTop" head-title="收益明细"/>
 		<div class="wrap-position" :class="{'head-top': $store.state.headTop}">
 			<income-head :show-avatar="true" @dtpicker="dtpickerTap" @onsearch="searchData" :userInfo="userInfo"/>
 			<!--<mui-slider-tab top="5.253rem"/>-->
 			<mui-slider-tab top="5.253rem" :showArrow="false" :moneyArr="userInfo.moneyArr.join()" :tabDataOne="tabDataOne" :tabDataTwo="tabDataTwo" :tabDataThree="tabDataThree"/>
-		</div>		
+		</div>
 	</div>
 </template>
 
@@ -51,7 +51,7 @@
 			(function($) {
 				$.ready(function() {
 					//循环初始化所有下拉刷新，上拉加载。
-					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					$.each(document.querySelectorAll('#i_friend .mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
 						$(pullRefreshEl).pullToRefresh({
 							up: {
 								auto: true,

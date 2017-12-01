@@ -7,8 +7,8 @@
 				<div class="label-box">
 					<div class="house"><span>城邦精品酒店</span><br />505  温馨大床房</div>
 					<div class="code-box">
-						<div class="code no-lock">
-							<!--<img class="img-center" src="static/images/erweima.png"/>-->
+						<div class="code">
+							<img class="img-center" src="static/images/erweima.png"/>
 						</div>
 					</div>
 				</div>
