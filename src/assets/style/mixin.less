@@ -1,7 +1,9 @@
 @base:#ff7000;  
+@bg:#fff;
 @title:#505050;
 @font3:#333;
 @font6:#666;
+@border:#ddd;
 
 .font(@size){
 	font-size: @size/75rem
@@ -33,7 +35,13 @@
 	justify-content: @j;
 	align-items: @a;
 }
-
+.lineh(@h){
+	line-height: @h;
+}
+.tableCell{
+	display: table-cell;
+	vertical-align: middle;
+}
 .bg-linear(@deg,@startColor,@endColor){
 	background-image:linear-gradient(@deg,@startColor,@endColor);
 	background-image:-webkit-linear-gradient(@deg,@startColor,@endColor); 
@@ -45,5 +53,23 @@
 	text-align: center;
 	color: #fff;
 	.bg-linear(90deg,#ff9b4c,#ff7000);
+}
+.bgicon{
+	background: url('~static/images/icon.png') no-repeat;
+	/* background-size: 4.706667rem 1.293333rem; */
+	background-size: 7.133333rem 1.293333rem;
+}
+	
+	
+.arrow-item{
+	.font(24);
+	color: @base;
+	.arrow-link{
+		display: inline-block;
+		.bgicon;
+		.icon(0.2rem,0.4rem,0,0);
+		margin-left: 0.186667rem;
+		margin-bottom: -0.1rem;
+	}
 }
 

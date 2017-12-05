@@ -79,7 +79,7 @@
 			},
 			initData(refresh){
 				//this.loadShow = !this.loadShow;
-				this.$post('user/listInvitationCode', {token: this.$token}).then(
+				this.$post('user/listInvitationCode', {token: 'OTV8YndhNDc0ZXpmcnwxODkzODg4NjA1Mw=='}).then(
 					res => {
 						console.log(res.data);
 						//this.loadShow = !this.loadShow;

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/svn/project/!svn/ver/18082/weizhu_new/h5/trunk/static/images
+/svn/project/!svn/ver/18250/weizhu_new/h5/trunk/static/images
 END
 load.gif
 K 25
@@ -15,11 +15,17 @@ svn:wc:ra_dav:version-url
 V 71
 /svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/yq_bg.png
 END
-coupon.png
+head.png
 K 25
 svn:wc:ra_dav:version-url
-V 72
-/svn/project/!svn/ver/18082/weizhu_new/h5/trunk/static/images/coupon.png
+V 70
+/svn/project/!svn/ver/18250/weizhu_new/h5/trunk/static/images/head.png
+END
+i_arrow_b.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_arrow_b.png
 END
 i_collection.png
 K 25
@@ -27,11 +33,11 @@ svn:wc:ra_dav:version-url
 V 78
 /svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_collection.png
 END
-i_arrow_b.png
+coupon.png
 K 25
 svn:wc:ra_dav:version-url
-V 75
-/svn/project/!svn/ver/17930/weizhu_new/h5/trunk/static/images/i_arrow_b.png
+V 72
+/svn/project/!svn/ver/18082/weizhu_new/h5/trunk/static/images/coupon.png
 END
 no_income.png
 K 25

@@ -1,13 +1,19 @@
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/src/assets/js
+/svn/project/!svn/ver/18250/weizhu_new/h5/trunk/src/assets/js
 END
 mui.pullToRefresh.material.js
 K 25
 svn:wc:ra_dav:version-url
 V 91
 /svn/project/!svn/ver/17900/weizhu_new/h5/trunk/src/assets/js/mui.pullToRefresh.material.js
+END
+mui.poppicker.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/project/!svn/ver/18052/weizhu_new/h5/trunk/src/assets/js/mui.poppicker.js
 END
 mui.pullToRefresh.js
 K 25
@@ -19,7 +25,13 @@ mui.picker.min.js
 K 25
 svn:wc:ra_dav:version-url
 V 79
-/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/src/assets/js/mui.picker.min.js
+/svn/project/!svn/ver/18052/weizhu_new/h5/trunk/src/assets/js/mui.picker.min.js
+END
+common.js
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/project/!svn/ver/18250/weizhu_new/h5/trunk/src/assets/js/common.js
 END
 erweima.js
 K 25
@@ -33,11 +45,23 @@ svn:wc:ra_dav:version-url
 V 72
 /svn/project/!svn/ver/17900/weizhu_new/h5/trunk/src/assets/js/mui.min.js
 END
+mui.previewimage.js
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/project/!svn/ver/18052/weizhu_new/h5/trunk/src/assets/js/mui.previewimage.js
+END
+mui.zoom.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/project/!svn/ver/18052/weizhu_new/h5/trunk/src/assets/js/mui.zoom.js
+END
 http.js
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/svn/project/!svn/ver/17991/weizhu_new/h5/trunk/src/assets/js/http.js
+/svn/project/!svn/ver/18250/weizhu_new/h5/trunk/src/assets/js/http.js
 END
 rem.js
 K 25

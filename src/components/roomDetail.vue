@@ -1,11 +1,24 @@
 <template>
 	<div class="room">
 		<div class="room-type font32">
-			<span class="room-num">{{ roomDetail.houseNumber }}</span>{{ roomDetail.houseName }}
+			<span class="room-num">{{ roomDetail.houseNumber }}</span>
+			<span class="room-name">{{ roomDetail.houseName }}</span>
+			<span class="close"></span>
 		</div>
-		<div class="banner">
-			
-		</div>
+		<banner class="banner">
+			<template slot="pic">
+				<div class="mui-slider-item" v-for="picItem in roomDetail.houseImg">
+					<img :src="picItem" data-preview-src="" data-preview-group="1" >
+				</div>
+			</template>
+			<template slot="title" scope="props">
+				<span class="banner-title">
+					{{ props.text }}
+						/
+					{{ roomDetail.houseImg.length }}
+				</span>
+			</template>
+		</banner>
 		<div class="room-info">
 			<ul class="room-dev font24">
 				<li>
@@ -68,10 +81,17 @@
 	</div>
 </template>
 <script type="text/javascript">
+	import banner from 'components/swiper'
 	export default{
 		name: "room",
+		components:{
+			banner
+		},
 		created(){
 
+		},
+		mounted(){
+			
 		},
 		data(){
 			return{
@@ -97,11 +117,37 @@
 						    "toLive": "2",
 						    "bedType": "1.8米大床",
 						    "other": "房间有电视，洗衣机等"
-						  }
+				},
+				slideIndex: 1
 			}
+		},
+		computed:{
+
+		},
+		methods:{
+			
 		}
 	}
 </script>
+<style type="text/less" lang="less">
+	.room{
+		.banner{
+			.banner-title{
+				width: 0.933333rem;
+				line-height: 0.4rem;
+				position: absolute;
+				bottom: 0.133333rem;
+				right: 0.266667rem;
+				background: rgba(000,000,000,.4);
+				color: #fff;
+				font-size: 0.32rem;
+				text-align: center;
+				border-radius: 0.2rem;
+			}
+		}
+	}
+
+</style>
 <style type="text/less" lang="less" scoped>
 	@import '~assets/style/mixin';
 	.room{
@@ -114,12 +160,20 @@
 			padding: 0 0.4rem;
 			.size(100%,1.066667rem);
 			line-height: 1.066667rem;
+			.flex(flex-start,center);
 			.room-num{
 				margin-right: 0.333333rem;
 			}
-		}
-		.banner{
-
+			.room-name{
+				flex:1;
+			}
+			.close{
+				display: inline-block;
+				.size(0.453333rem,0.453333rem);
+				margin-left: 0.266667rem;
+				.bgicon;
+				background-position: -5.333333rem -0.8rem;
+			}
 		}
 		.room-info{
 			padding: 0 0.4rem;
@@ -140,7 +194,7 @@
 						color: #afafaf;
 						padding-right: 0.2rem;
 					}
-				}		
+				}
 			}
 			.room-fee{
 				.flex(space-between,center);

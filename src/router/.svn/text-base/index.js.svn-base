@@ -44,7 +44,53 @@ export default new Router({
       name: 'roomDetail',
             path: '/hotelDetail/room',
       component: resolve => require(['src/components/roomDetail.vue'], resolve)
-    }
-    
+    },
+    {
+      name: 'order',
+      path: '/order',
+      component: resolve => require(['src/page/order/index.vue'], resolve),
+      children:[
+        {
+          name: 'orderPrint',
+          path: '/order/print',
+          component: resolve => require(['src/page/order/print.vue'], resolve)
+        }
+      ]
+    },    
+    {
+      name: 'join',
+      path: '/join',
+      component: resolve => require(['src/page/join/merchantJoin.vue'], resolve)
+    },
+    {
+      name: 'info',
+      path: '/personal/info',
+      component: resolve => require(['src/page/personal/info.vue'], resolve)
+    },
+    {
+      name: 'changeEmail',
+      path: '/personal/email',
+      component: resolve => require(['src/page/personal/changeEmail.vue'], resolve)
+    },
+    {
+      name: 'changeName',
+      path: '/personal/name',
+      component: resolve => require(['src/page/personal/changeName.vue'], resolve)
+    },
+    {
+      name: 'hitory',
+      path: '/personal/history',
+      component: resolve => require(['src/page/personal/history.vue'], resolve)
+    },
+    {
+      name: 'collect',
+      path: '/personal/collect',
+      component: resolve => require(['src/page/personal/collect.vue'], resolve)
+    },
+    {
+      name: 'feedback',
+      path: '/personal/feedback',
+      component: resolve => require(['src/page/personal/feedback.vue'], resolve)
+    }   
   ]
 })

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/src/components
+/svn/project/!svn/ver/18250/weizhu_new/h5/trunk/src/components
 END
 MuiSliderTap.vue
 K 25
@@ -25,7 +25,7 @@ swiper.vue
 K 25
 svn:wc:ra_dav:version-url
 V 73
-/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/src/components/swiper.vue
+/svn/project/!svn/ver/18250/weizhu_new/h5/trunk/src/components/swiper.vue
 END
 IncomeHead.vue
 K 25
@@ -37,5 +37,5 @@ roomDetail.vue
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/svn/project/!svn/ver/17900/weizhu_new/h5/trunk/src/components/roomDetail.vue
+/svn/project/!svn/ver/18052/weizhu_new/h5/trunk/src/components/roomDetail.vue
 END
